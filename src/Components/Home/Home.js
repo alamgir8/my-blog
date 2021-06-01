@@ -11,9 +11,6 @@ const Home = () => {
         .then(data => setPosts(data))
     }, [])
 
-    const showMore = () => {
-        setVisiblePost(previous => previous + 10)
-    }
 
     return (
         <div className='home py-5'>
@@ -33,7 +30,7 @@ const Home = () => {
                         } 
                 </div>
                 <div className="text-center">
-                <button onClick={showMore} className='btn btn-info'>Load More</button>
+                <button onClick={() => setVisiblePost(previous => previous + 10)} className='btn btn-info'>Load More</button>
                 </div>
             </div>   
         </div>

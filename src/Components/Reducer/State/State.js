@@ -10,11 +10,7 @@ const DELETE_POST = 'DELETE_POST';
 
 const initialState = {
     posts : [
-        {
-            id : null,
-            title : '',
-            body : ''
-        }
+        
     ]
 }
 

@@ -8,7 +8,7 @@ import { PostContext } from '../../Reducer/State/State';
 
 const User = () => {
     const [posts, setPosts] = useState([])
-    const {newPosts, deletePost} = useContext(PostContext);    
+    const {newPosts, deletePost} = useContext(PostContext);
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts')
@@ -28,7 +28,9 @@ const User = () => {
                         <div className="text-right">
                             <Link to='/addPost' className='btn btn-info'>Create Post</Link>
                         </div>
-                        <div className="row">
+                        {
+                            newPosts.length > 0 &&
+                            <div className="row">
                             {
                                 newPosts.map(newPost => 
                                     <div key={newPost?.id} className="col-md-4">
@@ -43,6 +45,10 @@ const User = () => {
                                     </div>
                                     )
                             }
+                            </div>
+                        }
+
+                            <div className="row">
                             {
                                 posts.map(post => 
                                     <div key={post.id} className="col-md-4">
