@@ -12,36 +12,19 @@ const Pagination = () => {
     const [allUsers, setAllUsers] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [sorting, setSorting] = useState({ field: "", order: "" });
+    const [pagination, setPagination] = useState(false)
 
-
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then(data => {
-               
-    const userData = window.localStorage.getItem('users');
-    console.log(JSON.parse(userData));
-    
-            setUsers(data)
-            setThreePerPage(data)
-            setFivePerPage(data)
-            setAllUsers(data)
-            
-        })
-       
-    }, [])
-
-    
-    const headers = [
-        {name : 'No', field : 'id', sortable: false},
-        {name: 'Name', field : 'name', sortable : true},
-        {name : 'Email', field : 'email', sortable : true},
-        {name : 'Website', field : 'body', sortable : false}
-    ]
-
-    const usersData = useMemo(() => {
+  
+    const usersData = useMemo(() => { 
         
-        let allUser = users;
+        const userData = localStorage.getItem('users');
+
+        let allUser = ((JSON.parse(userData)));
+
+        if (pagination) {
+            allUser = users;
+        }
+       
 
         if (searchText) {
             allUser = allUser.filter(
@@ -61,18 +44,52 @@ const Pagination = () => {
             );
             
         }
-        
-        if(localStorage.getItem('users')){
-            window.localStorage.setItem('users', JSON.stringify(allUser));
+
+    
+        if (sorting) {
+            localStorage.setItem('users', JSON.stringify(allUser))
         }
-    
-
+        
         return allUser
-    }, [users, searchText, sorting])
+    }, [users, pagination, searchText, sorting])
 
-
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .then(data => {
+                setUsers(data)
+                setThreePerPage(data)
+                setFivePerPage(data)
+                setAllUsers(data)
+            
+        })
+       
+    }, [])
 
     
+    const headers = [
+        {name : 'No', field : 'id', sortable: false},
+        {name: 'Name', field : 'name', sortable : true},
+        {name : 'Email', field : 'email', sortable : true},
+        {name : 'Website', field : 'body', sortable : false}
+    ]
+
+    const paginationThree = () => {
+        setUsers(threePerPage.slice(0, 3))
+        setPagination(true)
+    }
+    const paginationFive = () => {
+        setUsers(fivePerPage.slice(0, 5))
+        setPagination(true)
+    }
+    const paginationAll = () => {
+        setUsers(allUsers.slice(0, 10))
+        setPagination(true)
+    }
+
+       
+   
+   
 
     return (
         <div className='pagination-section mt-5'>
@@ -82,13 +99,13 @@ const Pagination = () => {
                             <div className="col-md-9">
                                 <ul className='pagination'>
                                     <li className='page-item mx-1'>
-                                        <button onClick={() => setUsers(threePerPage.slice(0, 3))} className='btn btn-info'>3</button>
+                                        <button onClick={paginationThree} className='btn btn-info'>3</button>
                                     </li>
                                     <li className='page-item mx-2'>
-                                        <button onClick={() => setUsers(fivePerPage.slice(0, 5))} className='btn btn-info'>5</button>
+                                        <button onClick={paginationFive} className='btn btn-info'>5</button>
                                     </li>
                                     <li className='page-item mx-1'>
-                                        <button onClick={() => setUsers(allUsers.slice(0, 10))} className='btn btn-info'>All</button>
+                                        <button onClick={paginationAll} className='btn btn-info'>All</button>
                                     </li>
                                 </ul>
                             </div>
