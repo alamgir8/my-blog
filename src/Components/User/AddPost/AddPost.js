@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { useHistory } from 'react-router';
-import Header from '../../Home/Header/Header';
+import Header from '../../Header/Header';
 import { PostContext } from '../../Reducer/State/State';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,6 +21,7 @@ const AddPost = () => {
             body : body
         }
         addPost(post);
+        alert('Your Post Successfully Created!')
         history.push('/user/2')
     }
 

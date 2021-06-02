@@ -29,15 +29,16 @@ const Post = () => {
 
     return (
         <div className='post-section'>
-            <h3>Post : {post.title}</h3>
+            <h2 className='py-5 text-center'>This is Details of Post ID {userId}</h2>
+            <h3 className='py-3'>Post : {post.title}</h3>
+            <h4>Comments:</h4>
                 <div className="row">
-                    <h4>Comments:</h4>
                     {
                         comments.map(comment => 
                             <div className='col-md-4' key={comment.id}>
-                                <div className="card p-3">
-                                    <h2>{comment.id}</h2>
-                                    <h6>{comment.name}</h6>
+                                <div className="card p-3 m-2">
+                                    <p className='h6 text-center'>Comment ID : {comment.id}</p>
+                                    <h5>{comment.name}</h5>
                                     <p>{comment.body}</p>
                                 </div>
                             </div>

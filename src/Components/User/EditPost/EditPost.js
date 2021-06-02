@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { useHistory, useParams } from 'react-router';
-import Header from '../../Home/Header/Header';
+import Header from '../../Header/Header';
 import { PostContext } from '../../Reducer/State/State';
 
 const EditPost = () => {
@@ -24,6 +24,7 @@ const EditPost = () => {
 
     const onSubmit = () => {
         editPost(selectPost)
+        alert('Post Updated Successfully!')
         history.push('/user/2')
     }
     const ChangePost = (e) =>{

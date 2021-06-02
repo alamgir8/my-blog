@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import Header from '../../../Home/Header/Header';
+import Header from '../../../Header/Header';
 import Pagination from './Pagination';
 
 const DynamicUser = () => {

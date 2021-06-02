@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from './Header/Header';
+import Header from '../Header/Header';
 
 const Home = () => {
     const [posts, setPosts] = useState([])
@@ -13,14 +13,15 @@ const Home = () => {
 
 
     return (
-        <div className='home py-5'>
+        <div className='home'>
             <Header/>
-            <div className="container">
+            <div className="container py-5">
                 <div className="row">
                         {
                             posts.slice(0, visiblePost).map(post => 
                                 <div key={post.id} className="col-md-4">
-                                    <div className='card p-3 my-2 bg-light'>
+                                    <div className='card p-3 my-2'>
+                                        <p className='text-center'>Post ID : {post.id}</p>
                                         <h5 className='text-center'>{post.title}</h5>
                                         <p>{post.body}</p>
                                     </div>
