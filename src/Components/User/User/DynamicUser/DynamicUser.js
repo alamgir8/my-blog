@@ -48,13 +48,13 @@ const DynamicUser = () => {
             <Header/>
             <div className="container">
                 <div className="user-info card bg-light p-4 my-4 w-50 mx-auto">
-                    <h2>User ID No : {selectUser.id}</h2>
-                    <h3>User Name : {selectUser.name}</h3>
-                    <h3>Email : {selectUser.email}</h3>
-                    <h3>Phone : {selectUser.phone}</h3>
-                    <h3>Website : {selectUser.website}</h3>
+                    <p className='h6'>User ID No : {selectUser.id}</p>
+                    <h4>User Name : {selectUser.name}</h4>
+                    <h4>Email : {selectUser.email}</h4>
+                    <h4>Phone : {selectUser.phone}</h4>
+                    <h4>Website : {selectUser.website}</h4>
                 </div>
-                <div className="user-posts">
+                <div className="user-posts my-4">
                     <h4>User Posts</h4>
                     <ul className="list-group my-2">
                         {
