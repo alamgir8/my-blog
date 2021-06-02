@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../Home/Header/Header';
-import { PostContext } from '../../Reducer/State/State';
+import Header from '../../../Home/Header/Header';
+import { PostContext } from '../../../Reducer/State/State';
 
 const User = () => {
     const [posts, setPosts] = useState([])

@@ -2,45 +2,33 @@ import React, { useMemo } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Pagination from './Pagination';
 import Search from './Search';
-import Sort from './Sort';
+import TableHeader from './TableHeader';
 
-const Pagination = () => {
+const UserTable = () => {
     const [users, setUsers] = useState([])
-    const [threePerPage, setThreePerPage] = useState([])
-    const [fivePerPage, setFivePerPage] = useState([])
-    const [allUsers, setAllUsers] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [sorting, setSorting] = useState({ field: "", order: "" });
     const [pagination, setPagination] = useState(false)
 
-  
-    
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(res => res.json())
-        .then(data => {
-                setUsers(data)
-                setThreePerPage(data)
-                setFivePerPage(data)
-                setAllUsers(data)
-            
-        })
+        .then(data => setUsers(data))
        
     }, [])
 
     const usersData = useMemo(() => { 
-        
+
         const userData = localStorage.getItem('users');
-     
         let allUser = userData === null ? users : JSON.parse(userData);
 
         if (pagination) {
             allUser = users
         }
-       
-
+    //search text function
         if (searchText) {
             allUser = allUser.filter(
                 search => 
@@ -50,7 +38,7 @@ const Pagination = () => {
             )
           
         }
-
+//sorting by ascending and decending
         if (sorting.field) {
             const reversed = sorting.order === "asc" ? 1 : -1;
             allUser = allUser.sort(
@@ -60,7 +48,7 @@ const Pagination = () => {
             
         }
 
-    
+    //store data to localStorage for save state after reload page
         if (sorting) {
             localStorage.setItem('users', JSON.stringify(allUser))
         }
@@ -68,29 +56,6 @@ const Pagination = () => {
         return allUser
     }, [users, pagination, searchText, sorting])
 
-    
-    const headers = [
-        {name : 'No', field : 'id', sortable: false},
-        {name: 'Name', field : 'name', sortable : true},
-        {name : 'Email', field : 'email', sortable : true},
-        {name : 'Website', field : 'body', sortable : false}
-    ]
-
-    const paginationThree = () => {
-        setUsers(threePerPage.slice(0, 3))
-        setPagination(true)
-    }
-    const paginationFive = () => {
-        setUsers(fivePerPage.slice(0, 5))
-        setPagination(true)
-    }
-    const paginationAll = () => {
-        setUsers(allUsers.slice(0, 10))
-        setPagination(true)
-    }
-
-       
-   
    
 
     return (
@@ -99,17 +64,7 @@ const Pagination = () => {
             <div className="my-5">
                         <div className="row">
                             <div className="col-md-9">
-                                <ul className='pagination'>
-                                    <li className='page-item mx-1'>
-                                        <button onClick={paginationThree} className='btn btn-info'>3</button>
-                                    </li>
-                                    <li className='page-item mx-2'>
-                                        <button onClick={paginationFive} className='btn btn-info'>5</button>
-                                    </li>
-                                    <li className='page-item mx-1'>
-                                        <button onClick={paginationAll} className='btn btn-info'>All</button>
-                                    </li>
-                                </ul>
+                                <Pagination setPagination={setPagination} setUsers={setUsers}/>
                             </div>
                             <div className="col-md-3">
                                 <Search onSearch={(value) => 
@@ -119,17 +74,16 @@ const Pagination = () => {
                             </div>
                         </div>
                     <table className="table table-borderless table-hover">
-                        <Sort
-                            headers={headers}
+                        <TableHeader
                             onSorting={(field, order) => setSorting({field, order})}
                         />
                         <tbody>
                             {
-                                usersData.map((user, index) => 
+                                usersData.map((user) => 
                                     <tr key={user.id}>
-                                        <td>{index + 1}</td>
+                                        <td>{user.id}</td>
                                         <td>
-                                            <Link to='/'>{user.name}</Link>
+                                            <Link to={`/user/${user.id}`}>{user.name}</Link>
                                         </td>
                                         <td>{user.email}</td>
                                         <td>{user.website}</td>
@@ -144,4 +98,4 @@ const Pagination = () => {
     );
 };
 
-export default Pagination;
+export default UserTable;

@@ -8,7 +8,8 @@ import Home from './Components/Home/Home';
 import { PostProvider } from "./Components/Reducer/State/State";
 import AddPost from "./Components/User/AddPost/AddPost";
 import EditPost from "./Components/User/EditPost/EditPost";
-import User from "./Components/User/User/User";
+import DynamicUser from "./Components/User/User/DynamicUser/DynamicUser";
+import User from "./Components/User/User/SelectedUser/User";
 import UserDetails from "./Components/User/UserDetails/UserDetails";
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
                     </Route>
                     <Route path='/user/2'>
                         <User/>
+                    </Route>
+                    <Route path='/user/:userId'>
+                        <DynamicUser/>
                     </Route>
                     <Route path='/addPost'>
                       <AddPost/>

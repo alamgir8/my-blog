@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../Home/Header/Header';
-import Pagination from './Pagination';
-import Post from './Post';
+import UserTable from './UserTable/UserTable';
+import Post from './Post/Post';
 
 const UserDetails = () => {
 
@@ -12,7 +12,7 @@ const UserDetails = () => {
             <div className="container">
                 <h2>This is user Details</h2>
                 <Post/>
-               <Pagination/>
+               <UserTable/>
             </div>
         </div>
     );
