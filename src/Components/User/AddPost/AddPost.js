@@ -32,11 +32,11 @@ const AddPost = () => {
                     <form onSubmit={onSubmit}>
                         <div className="mb-3">
                             <label className="form-label">Post Title</label>
-                            <input onChange={(e) => setTitle(e.target.value)} type="text" className="form-control" placeholder="First Post"/>
+                            <input onChange={(e) => setTitle(e.target.value)} type="text" className="form-control" placeholder="First Post" required/>
                         </div>
                         <div className="mb-3">
                         <label className="form-label">Post Description</label>
-                        <textarea onChange={(e) => setBody(e.target.value)} className="form-control" rows="3"></textarea>
+                        <textarea onChange={(e) => setBody(e.target.value)} className="form-control" rows="3" required></textarea>
                         </div>
                         <div className="text-right">
                             <button type='submit' className='btn btn-success'>Add Post</button>

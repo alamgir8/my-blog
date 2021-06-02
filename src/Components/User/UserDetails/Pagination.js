@@ -11,19 +11,24 @@ const Pagination = () => {
     const [fivePerPage, setFivePerPage] = useState([])
     const [allUsers, setAllUsers] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const [sorting, setSorting] = useState({field : '', order : ''})
-
+    const [sorting, setSorting] = useState({ field: "", order: "" });
 
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(res => res.json())
         .then(data => {
-            setUsers(data.sort())
-            setThreePerPage(data.sort())
-            setFivePerPage(data.sort())
-            setAllUsers(data.sort())
+               
+    const userData = window.localStorage.getItem('users');
+    console.log(JSON.parse(userData));
+    
+            setUsers(data)
+            setThreePerPage(data)
+            setFivePerPage(data)
+            setAllUsers(data)
+            
         })
+       
     }, [])
 
     
@@ -35,6 +40,7 @@ const Pagination = () => {
     ]
 
     const usersData = useMemo(() => {
+        
         let allUser = users;
 
         if (searchText) {
@@ -53,13 +59,18 @@ const Pagination = () => {
                 (a, b) =>
                     reversed * a[sorting.field].localeCompare(b[sorting.field])
             );
-            console.log(reversed, allUser);
+            
         }
+        
+        if(localStorage.getItem('users')){
+            window.localStorage.setItem('users', JSON.stringify(allUser));
+        }
+    
 
-       console.log(allUser);
-  
         return allUser
     }, [users, searchText, sorting])
+
+
 
     
 
@@ -91,7 +102,7 @@ const Pagination = () => {
                     <table className="table table-borderless table-hover">
                         <Sort
                             headers={headers}
-                            onSorting={(field, order) => setSorting(field, order)}
+                            onSorting={(field, order) => setSorting({field, order})}
                         />
                         <tbody>
                             {

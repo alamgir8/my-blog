@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
 const Search = ({onSearch}) => {
-    // const [ascending, setAscending] = useState('')
-    // const [decending, setDecending] = useState('')
+  
     const [searchText, setSearchText] = useState('')
 
     const onInputChange = (value) => {
