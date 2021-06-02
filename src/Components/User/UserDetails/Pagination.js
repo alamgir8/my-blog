@@ -15,14 +15,29 @@ const Pagination = () => {
     const [pagination, setPagination] = useState(false)
 
   
+    
+
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .then(data => {
+                setUsers(data)
+                setThreePerPage(data)
+                setFivePerPage(data)
+                setAllUsers(data)
+            
+        })
+       
+    }, [])
+
     const usersData = useMemo(() => { 
         
         const userData = localStorage.getItem('users');
-
-        let allUser = ((JSON.parse(userData)));
+     
+        let allUser = userData === null ? users : JSON.parse(userData);
 
         if (pagination) {
-            allUser = users;
+            allUser = users
         }
        
 
@@ -52,19 +67,6 @@ const Pagination = () => {
         
         return allUser
     }, [users, pagination, searchText, sorting])
-
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then(data => {
-                setUsers(data)
-                setThreePerPage(data)
-                setFivePerPage(data)
-                setAllUsers(data)
-            
-        })
-       
-    }, [])
 
     
     const headers = [
