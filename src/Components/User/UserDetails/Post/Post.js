@@ -35,9 +35,9 @@ const Post = () => {
                 <div className="row">
                     {
                         comments.map(comment => 
-                            <div className='col-md-4 my-2' key={comment.id}>
+                            <div className='col-md-4 mt-4' key={comment.id}>
                                 <div className="card d-flex flex-column h-100 p-3">
-                                    <p className='h6 text-center mt-auto'>Comment ID : {comment.id}</p>
+                                    <p className='h6 text-center'>Comment ID : {comment.id}</p>
                                     <h5>{comment.name}</h5>
                                     <p>{comment.body}</p>
                                 </div>

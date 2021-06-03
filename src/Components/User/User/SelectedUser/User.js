@@ -51,12 +51,12 @@ const User = () => {
                             <div className="row">
                             {
                                 posts.map(post => 
-                                    <div key={post.id} className="col-md-4  my-2 ">
+                                    <div key={post.id} className="col-md-4  mt-4 ">
                                         <div className='card d-flex flex-column h-100 p-3 bg-light'>
-                                            <p className='text-center mt-auto strong'>Post ID : {post.id}</p>
+                                            <p className='text-center strong'>Post ID : {post.id}</p>
                                             <h5 className='text-center'>{post.title}</h5>
                                             <p>{post.body}</p>
-                                            <div className="text-center">
+                                            <div className="text-center mt-auto">
                                                 <Link to={`/user/2/details/${post.id}`} className='h5'>Details</Link>
                                             </div>
                                         </div>

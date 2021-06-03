@@ -19,9 +19,9 @@ const Home = () => {
                 <div className="row">
                         {
                             posts.slice(0, visiblePost).map(post => 
-                                <div key={post.id} className="col-md-4 my-2">
+                                <div key={post.id} className="col-md-4 mt-4">
                                     <div className='card d-flex flex-column h-100 p-3'>
-                                            <p className='text-center mt-auto'>Post ID : {post.id}</p>
+                                            <p className='text-center'>Post ID : {post.id}</p>
                                             <h5 className='text-center'>{post.title}</h5>
                                             <p>{post.body}</p>
                                     </div>
@@ -30,7 +30,7 @@ const Home = () => {
                             )
                         } 
                 </div>
-                <div className="text-center">
+                <div className="text-center mt-4">
                 <button onClick={() => setVisiblePost(previous => previous + 10)} className='btn btn-info'>Load More</button>
                 </div>
             </div>   

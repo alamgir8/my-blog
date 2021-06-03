@@ -56,7 +56,7 @@ const DynamicUser = () => {
                 </div>
                 <div className="user-posts my-4">
                     <h4>User Posts</h4>
-                    <ul className="list-group my-2">
+                    <ul className="list-group mt-2">
                         {
                             currentPost.map(post =>
                                 <li key={post.id} className="list-group-item">

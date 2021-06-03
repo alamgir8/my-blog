@@ -10,7 +10,7 @@ const Pagination = ({postPerPage, totalPosts, paginate}) => {
 
     return (
         <div className='dynamic-user-post-pagination'>
-            <div className="container">
+            <div className="container mt-3">
                 <div className='pagination'>
                     {
                         numbers.map(number => 
