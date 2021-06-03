@@ -39,7 +39,7 @@ const DynamicUser = () => {
     const currentPost = posts.slice(firstPost, lastPost);
 
     const paginate = (number) => {
-        console.log(number);
+        // console.log(number);
         setCurrentPage(number)
     }
     

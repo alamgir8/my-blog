@@ -21,12 +21,6 @@ export const PostContext = createContext(initialState);
 export const PostProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const deletePost = (id) => {
-        dispatch({
-            type : DELETE_POST,
-            payload : id
-        })
-    }
     const addPost = (post) => {
         dispatch({
             type : ADD_POST,
@@ -39,6 +33,13 @@ export const PostProvider = ({children}) => {
             payload : post
         })
     }
+    const deletePost = (id) => {
+        dispatch({
+            type : DELETE_POST,
+            payload : id
+        })
+    }
+    
     return (
         <PostContext.Provider value={{
             newPosts : state.posts,
