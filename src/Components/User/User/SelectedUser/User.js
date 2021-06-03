@@ -51,9 +51,9 @@ const User = () => {
                             <div className="row">
                             {
                                 posts.map(post => 
-                                    <div key={post.id} className="col-md-4">
-                                        <div className='card p-3 my-2 bg-light'>
-                                            <p className='text-center strong'>Post ID : {post.id}</p>
+                                    <div key={post.id} className="col-md-4  my-2 ">
+                                        <div className='card d-flex flex-column h-100 p-3 bg-light'>
+                                            <p className='text-center mt-auto strong'>Post ID : {post.id}</p>
                                             <h5 className='text-center'>{post.title}</h5>
                                             <p>{post.body}</p>
                                             <div className="text-center">

@@ -19,11 +19,11 @@ const Home = () => {
                 <div className="row">
                         {
                             posts.slice(0, visiblePost).map(post => 
-                                <div key={post.id} className="col-md-4">
-                                    <div className='card p-3 my-2'>
-                                        <p className='text-center'>Post ID : {post.id}</p>
-                                        <h5 className='text-center'>{post.title}</h5>
-                                        <p>{post.body}</p>
+                                <div key={post.id} className="col-md-4 my-2">
+                                    <div className='card d-flex flex-column h-100 p-3'>
+                                            <p className='text-center mt-auto'>Post ID : {post.id}</p>
+                                            <h5 className='text-center'>{post.title}</h5>
+                                            <p>{post.body}</p>
                                     </div>
                                 </div>
                             
