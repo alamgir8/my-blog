@@ -73,7 +73,7 @@ const UserTable = () => {
                                 />
                             </div>
                         </div>
-                    <table className="table table-borderless table-hover">
+                    <table className="table table-hover">
                         <TableHeader
                             onSorting={(field, order) => setSorting({field, order})}
                         />
