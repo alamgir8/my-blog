@@ -1,6 +1,6 @@
 
 My Site name : My Blog
-Live Link : https://my-blog-a.web.app/home
+Live Link : https://my-blog-a.web.app/
 
 Some Feature of My Site :
 
