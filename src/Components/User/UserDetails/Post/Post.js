@@ -9,21 +9,26 @@ const Post = () => {
 
  
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(res => res.json())
-        .then(data => {
+       const getPosts = async() => {
+        const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+        const data = await res.json()
             const selectedPost = data.find(selectPost => selectPost.id === parseInt(userId))
             setPost(selectedPost)
-        })
+       }
+       return getPosts();
+
     }, [userId])
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/comments')
-        .then(res => res.json())
-        .then(data => {
+        const getComments = async() => {
+        const res = await fetch('https://jsonplaceholder.typicode.com/comments')
+        const data = await res.json();
             const result = data.filter(element => element.postId === parseInt(userId))
             setComments(result)
-        })
+        }
+
+        return getComments()
+
     }, [userId])
 
 

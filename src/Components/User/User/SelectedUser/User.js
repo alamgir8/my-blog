@@ -11,13 +11,21 @@ const User = () => {
     const {newPosts, deletePost} = useContext(PostContext);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(res => res.json())
-        .then(data => {
-            const result = data.filter(element => element.userId === 2)
-            setPosts(result)
-        })
+        const getPosts = async() => {
+            const postFromServer = await fetchData()
+            const filteredData = postFromServer.filter((post) => post.userId === 2)
+            setPosts(filteredData)
+        }
+
+        getPosts()
+       
     }, [])
+
+    const fetchData = async() => {
+      const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+        const data = await res.json();
+        return data;
+    }
 
 
     return (

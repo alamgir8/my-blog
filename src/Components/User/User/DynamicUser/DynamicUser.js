@@ -13,26 +13,34 @@ const DynamicUser = () => {
 
     useEffect(() => {
         //fetch for find specific user
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then(data => {
+        const getUsers = async() => {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users')
+        const data = await res.json();
             const result = data.find(user => {
                 return user.id === parseInt(userId)
             })
             setSelectUser(result)
-        })
+           
+        }
 
-        //fetch for filter user all posts
-        fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(res => res.json())
-        .then(data => {
-            const result = data.filter(posts => {
-                return posts.userId === parseInt(userId)
-            })
-            setPosts(result)
-        })
+        return getUsers()
 
     }, [userId])
+
+    useEffect(() => {
+        const getPosts = async() => {
+            const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+            const data = await res.json()
+                const result = data.filter(posts => {
+                    return posts.userId === parseInt(userId)
+                })
+                setPosts(result)
+               
+            }
+            return getPosts()
+    }, [userId])
+
+
 
     const lastPost = currentPage * postPerPage;
     const firstPost = lastPost - postPerPage;

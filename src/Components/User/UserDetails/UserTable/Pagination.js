@@ -10,13 +10,15 @@ const Pagination = ({setPagination, setUsers}) => {
 
     
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then(data => {
-                setThreePerPage(data)
-                setFivePerPage(data)
-                setAllUsers(data)
-        })
+       const getUsers = async() => {
+       const res = await fetch('https://jsonplaceholder.typicode.com/users')
+       const data = await res.json();
+            setThreePerPage(data)
+            setFivePerPage(data)
+            setAllUsers(data)
+       }
+
+       return getUsers()
        
     }, [])
 
